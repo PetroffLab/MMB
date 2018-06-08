@@ -6,4 +6,4 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-echo Hello %1
+echo Hello $Name
