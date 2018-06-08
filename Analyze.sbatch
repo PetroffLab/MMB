@@ -6,17 +6,20 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-cd MagnetometerConnect
+# Initialize Matlab
+module load matlab
+MatlabFUNCTION=SomeFunction
+
+# Gain list of raw data
+cd Raw
 for FILE in *; do
 echo ${FILE}
+# Run the Analysis
+cd ../AnalyzedData
+matlab -nodisplay -r "${MatlabFUNCTION}('../Raw/${FILE}')"
+cd ../Raw
 done
 
-for FILE in *.m; do
-echo ${FILE}
-done
-
+# Get rid of the raw data now that we don't need it on the cluster
+rm *
 cd ..
-
-#module load matlab
-
-#matlab -nodisplay < matlab_simple.m
