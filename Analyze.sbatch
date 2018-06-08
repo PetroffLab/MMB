@@ -7,7 +7,7 @@
 #SBATCH --ntasks=1
 
 
-for FILE in /Magnetometer/*; do
+for FILE in ./Magnetometer/*; do
 echo ${FILE}
 done
 
