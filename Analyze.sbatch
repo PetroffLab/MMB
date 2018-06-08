@@ -1,9 +1,19 @@
 #!/bin/bash
 
-#SBATCH --job-name=HelloWorld
-#SBATCH --output=Hello.out
-#SBATCH --error=Hello.err
+#SBATCH --job-name=Analyze
+#SBATCH --output=Analyze.out
+#SBATCH --error=Analyze.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-echo Hello $Name
+for FILE in Magnetometer/*; do
+echo ${FILE}
+done
+
+for FILE in Magnetometer/*.sbatch; do
+echo ${FILE}
+done
+
+#module load matlab
+
+#matlab -nodisplay < matlab_simple.m
