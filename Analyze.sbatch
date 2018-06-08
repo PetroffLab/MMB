@@ -6,11 +6,11 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-for FILE in Magnetometer/*; do
+for FILE in /Magnetometer/*; do
 echo ${FILE}
 done
 
-for FILE in Magnetometer/*.sbatch; do
+for FILE in /Magnetometer/*.sbatch; do
 echo ${FILE}
 done
 
