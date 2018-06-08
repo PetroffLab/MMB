@@ -6,13 +6,16 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-for FILE in /Magnetometer/*; do
+cd Magnetometer
+for FILE in *; do
 echo ${FILE}
 done
 
-for FILE in /Magnetometer/*.sbatch; do
+for FILE in *.sbatch; do
 echo ${FILE}
 done
+
+cd ..
 
 #module load matlab
 
