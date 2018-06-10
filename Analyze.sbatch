@@ -8,7 +8,7 @@
 
 # Initialize Matlab
 module load matlab
-MatlabFUNCTION=SomeFunction
+MatlabFUNCTION=find_background
 
 # Gain list of raw data
 cd Raw
@@ -20,6 +20,6 @@ matlab -nodisplay -r "${MatlabFUNCTION}('../Raw/${FILE}')"
 cd ../Raw
 done
 
-# Get rid of the raw data now that we don't need it on the cluster
-rm *
+# Get rid of the raw data now that we don't need it on the cluster and reset
+rm *.bat
 cd ..
