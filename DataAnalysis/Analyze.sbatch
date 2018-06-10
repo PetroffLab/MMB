@@ -11,16 +11,11 @@ module load matlab
 MatlabFUNCTION=find_background
 
 # Gain list of raw data
-# cd Raw
-# cd MagnetometerConnect
-for FILE in ../MagnetometerConnect/*; do
+for FILE in Raw/*; do
 echo ${FILE}
 # Run the Analysis
-# cd ..
-# matlab -nodisplay -r "${MatlabFUNCTION}('../Raw/${FILE}')"
-# cd Raw
+matlab -nodisplay -r "${MatlabFUNCTION}('${FILE}')"
 done
 
 # Get rid of the raw data now that we don't need it on the cluster and reset
-rm *.bat
-cd ..
+# rm Raw/*.mat
