@@ -12,7 +12,7 @@ MatlabFUNCTION=find_background
 
 # Gain list of raw data
 # cd Raw
-for FILE in /MagnetometerConnect/*; do
+for FILE in ./MagnetometerConnect/*; do
 echo ${FILE}
 # Run the Analysis
 # cd ..
