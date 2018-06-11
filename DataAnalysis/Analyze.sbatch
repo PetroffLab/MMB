@@ -15,8 +15,8 @@ for FILE in Raw/*.mp4; do
 echo ${FILE}
 DIR = ${FILE%*.}
 echo ${DIR}
-mkdir ${DIR}
-ffmpeg -i ${FILE} ${DIR}/${DIR}%05d.png
+# mkdir ${DIR}
+# ffmpeg -i ${FILE} ${DIR}/${DIR}%05d.png
 # Run the Analysis
 # matlab -nodisplay -r "${MatlabFUNCTION}('Raw/${FILE}')"
 done
