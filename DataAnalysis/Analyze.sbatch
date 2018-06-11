@@ -18,4 +18,4 @@ matlab -nodisplay -r "${MatlabFUNCTION}('${FILE}')"
 done
 
 # Get rid of the raw data now that we don't need it on the cluster and reset
-# rm Raw/*.mat
+rm Raw/*.mat
