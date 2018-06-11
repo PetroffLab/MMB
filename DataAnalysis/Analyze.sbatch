@@ -13,8 +13,11 @@ MatlabFUNCTION=find_background
 # Gain list of raw data
 for FILE in Raw/*; do
 echo ${FILE}
+DIR = ${FILE%*.}
+mkdir ${DIR}
+ffmpeg -i ${FILE} ${DIR}/${DIR}%05d.png
 # Run the Analysis
-matlab -nodisplay -r "${MatlabFUNCTION}('${FILE}')"
+matlab -nodisplay -r "${MatlabFUNCTION}('Raw/${FILE}')"
 done
 
 # Get rid of the raw data now that we don't need it on the cluster and reset
