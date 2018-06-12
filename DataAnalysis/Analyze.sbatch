@@ -13,8 +13,8 @@ MatlabFUNCTION=find_background
 # Gain list of raw data
 for FILE in Raw/*.mp4; do
 echo ${FILE}
-echo "${FILE}" | cut -f 1 -d '.'
-echo "${DIR}"
+echo ${FILE} | rev | cut -f 2- -d '.' | rev
+# echo "${DIR}"
 # mkdir ${DIR}
 # ffmpeg -i ${FILE} ${DIR}/${DIR}%05d.png
 # Run the Analysis
