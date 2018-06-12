@@ -10,20 +10,16 @@
 module load matlab
 MatlabFUNCTION=find_background
 
-filename=foo.txt
-test=$(echo "${filename%.*}")
-echo ${test}
-
 # Gain list of raw data
 for FILE in Raw/*.mp4; do
 echo ${FILE}
 DIR=$(echo "${FILE%.*}")
 echo ${DIR}
-# mkdir ${DIR}
-# ffmpeg -i ${FILE} ${DIR}/${DIR}%05d.png
+mkdir ${DIR}
+ffmpeg -i ${FILE} ${DIR}/${DIR}%05d.png
 # Run the Analysis
-# matlab -nodisplay -r "${MatlabFUNCTION}('Raw/${FILE}')"
+matlab -nodisplay -r "${MatlabFUNCTION}('Raw/${FILE}')"
+rm ${DIR}/*.png
 done
 
 # Get rid of the raw data now that we don't need it on the cluster and reset
-# rm Raw/*.mat
