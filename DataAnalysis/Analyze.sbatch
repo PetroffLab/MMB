@@ -10,6 +10,9 @@
 module load matlab
 MatlabFUNCTION=find_background
 
+filename=foo.txt
+echo "${filename%.*}"
+
 # Gain list of raw data
 for FILE in Raw/*.mp4; do
 echo ${FILE}
