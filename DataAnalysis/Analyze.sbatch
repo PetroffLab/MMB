@@ -18,7 +18,7 @@ echo ${DIR}
 mkdir ${DIR}
 ffmpeg -i ${FILE} ${DIR}/${DIR}%05d.png
 # Run the Analysis
-matlab -nodisplay -r "${MatlabFUNCTION}('Raw/${DIR}')"
+matlab -nodisplay -r "${MatlabFUNCTION}('Raw/${DIR##*/}')"
 rm ${DIR}/*.png
 done
 
