@@ -1,2 +1,5 @@
 This is used Pass the Raw directory to GitHub. This directory is used to store
   processed data.
+  
+  Cam's computer is faster than Alejandra's!
+  
