@@ -16,7 +16,7 @@ echo ${FILE}
 DIR=$(echo "${FILE%.*}")
 echo ${DIR##*/}
 mkdir ${DIR##*/}
-ffmpeg -i ${FILE} ${DIR##*/}/%05d.bmp
+ffmpeg -i ${FILE} ${DIR##*/}/${DIR##*/}%05d.bmp
 # Run the Analysis
 matlab -nodisplay -r "load 0.54a_sm.mat; ${MatlabFUNCTION}('${DIR##*/}')"
 rm ${DIR##*/}/*.bmp
