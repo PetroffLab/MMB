@@ -58,7 +58,7 @@ for i=1:length(num)
         pos{i}(j)=data{i}(j).Centroid(1)+1i*data{i}(j).Centroid(2);
     end
     hold off
-    drawnow
+%     drawnow
     TOC=toc;
     fprintf('found cell: %d of %d\n',i,length(num));
     fprintf('%f sec remaining\n',(TOC/i)*(length(num)-i));
