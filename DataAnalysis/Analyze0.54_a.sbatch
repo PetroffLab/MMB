@@ -14,12 +14,13 @@ MatlabFUNCTION=find_background
 for FILE in Raw/*.mp4; do
 echo ${FILE}
 DIR=$(echo "${FILE%.*}")
-echo ${DIR}
-mkdir ${DIR}
-ffmpeg -i ${FILE} ${DIR}/${DIR##*/}%05d.bmp
+echo ${DIR##*/}
+mkdir ${DIR##*/}
+ffmpeg -i ${FILE} ${DIR##*/}/%05d.bmp
 # Run the Analysis
-matlab -nodisplay -r "load 0.54_a; ${MatlabFUNCTION}('Raw/${DIR##*/}')"
-# rm ${DIR}/*.png
+matlab -nodisplay -r "load 0.54a_sm; ${MatlabFUNCTION}('${DIR##*/}')"
+rm ${DIR##*/}/*.bmp
+rmdir ${DIR##*/}
 done
 
 # Get rid of the raw data now that we don't need it on the cluster and reset
