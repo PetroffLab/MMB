@@ -14,7 +14,7 @@ MatlabFUNCTION=find_background
 for FILE in Raw/*.mp4; do
 echo ${FILE}
 DIR=$(echo "${FILE%.*}")
-echo ${DIR##*/}
+echo ${DIR#*/}
 mkdir ${DIR##*/}
 ffmpeg -i ${FILE} ${DIR##*/}/%05d.bmp
 # Run the Analysis
