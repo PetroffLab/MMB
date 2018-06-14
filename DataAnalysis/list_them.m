@@ -1,6 +1,6 @@
 function num=list_them(name)
 a=ls(name)
-% length(a(length(a),:))
+length(a(1))
 
 k=0;
 for i=1:length(a)
