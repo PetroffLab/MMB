@@ -1,6 +1,5 @@
 function num=list_them(name)
 a=ls(name);
-a=char(a)
 length(a(2))
 
 k=0;
