@@ -19,8 +19,8 @@ mkdir ${DIR##*/}
 ffmpeg -i ${FILE} ${DIR##*/}/${DIR##*/}%05d.bmp
 # Run the Analysis
 matlab -nodisplay -r "load 0.54a_sm.mat; ${MatlabFUNCTION}('${DIR##*/}')"
-rm ${DIR##*/}/*.bmp
-rmdir ${DIR##*/}
+# rm ${DIR##*/}/*.bmp
+# rmdir ${DIR##*/}
 done
 
 # Get rid of the raw data now that we don't need it on the cluster and reset
