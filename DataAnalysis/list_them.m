@@ -1,6 +1,6 @@
 function num=list_them(name)
 a=ls(name);
-ischar(a(length(a)))
+a(length(a))
 
 k=0;
 for i=1:length(a)
