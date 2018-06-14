@@ -1,6 +1,6 @@
 function num=list_them(name)
-a=transpose(ls(name))
-% a(2,:)
+a=ls(name);
+% length(a(length(a),:))
 
 k=0;
 for i=1:length(a)
