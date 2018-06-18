@@ -48,7 +48,7 @@ for i=1:length(num)
     %imagesc(read_frames(name,i)-back); 
     
     A=-conv2(read_frames(name,i)-back,sm,'same');
-    imagesc(A)
+%     imagesc(A)
     axis equal
     bw=A>20;
     data{i}=regionprops(bw);
