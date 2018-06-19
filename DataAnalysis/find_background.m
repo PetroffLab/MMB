@@ -202,10 +202,3 @@ else
 end
 
 save(save_name,'bug','name')
-
-
-
-
-
-
-
