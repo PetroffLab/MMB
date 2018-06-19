@@ -11,7 +11,7 @@ module load matlab
 MatlabFUNCTION=find_background
 
 # Gain list of raw data
-for FILE in Raw/0.54a/*; do
+for FILE in Raw/40X/*; do
 echo ${FILE}
 DIR=$(echo "${FILE%.*}")
 echo ${DIR##*/}
