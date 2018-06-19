@@ -27,7 +27,7 @@ echo ${partname}
 volt=${partname%V*}
 echo ${volt}
 # Freq
-partname=${fullname##*_*_}
+partname=${fullname##*X_}
 echo ${partname}
 freq=${partname%H*}
 echo ${freq}
