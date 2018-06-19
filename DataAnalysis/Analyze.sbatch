@@ -24,7 +24,7 @@ echo ${fullname}
 # VPP
 partname=${fullname##*_}
 echo ${partname}
-volt='${partname%V*}'
+volt=\'${partname%V*}\'
 echo ${volt}
 # Freq
 partname=${fullname##*X_}
