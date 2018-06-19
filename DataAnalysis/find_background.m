@@ -177,11 +177,9 @@ bug(kill == 1) = [];
 5;
 
 try
-%     save_dir=sprintf('mkdir AnalyzedData\%s',name);
-    system(strcat('mkdir AnalyzedData\',name));
+    system(strcat('mkdir .\AnalyzedData\',name));
 catch
-    save_dir=sprintf('mkdir AnalyzedData/%s',name);
-    system(save_dir);
+    system(strcat('mkdir ./AnalyzedData/',name)));
 end
 
 if isempty(TYPE)
