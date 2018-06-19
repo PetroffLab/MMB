@@ -3,7 +3,7 @@
 load 40X_sm.mat
 %%
 % Track Particles
-bug = find_background('SQ_40X_2.0HZ_0.75VPP');
+bug = find_background('40','2.0','0.75','SQ');
 %%
 % Go through each track and analyze only bugs with more than num points
 hold on;
@@ -34,13 +34,27 @@ for i=1:length(bug)
         traj{l}.y=y;
         traj{l}.k=k;
         %%
+        % Fourier Transform
+        framerate=30;
+        Y=abs(fft(k)).^2;
+        T=bug{i}.time*framerate;
+        L=length(Y);
+        P2=abs(Y./T);
+        length(P2)
+        length(Y)
+        P1=P2(1:L/2+1)
+        P1(2:end-1)=2*P1(2:end-1);
+        f=framerate*(0:(L/2))/L;
+        plot(f,P1);
+        figure();
+        %%
         % Plot the important bits
 %         plot(x,y)
-        figure();
-        plot(bug{i}.time,k)
+%         figure();
+%         plot(bug{i}.time,k)
 %         plot(bug{i}.time,fft(k))
 %         i
-%         axis([0 2 0 5]);
+%         axis([0 15 0 10^-8]);
     end
 end
 hold off;
