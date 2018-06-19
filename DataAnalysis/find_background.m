@@ -176,6 +176,14 @@ bug(kill == 1) = [];
 
 5;
 
+try
+%     save_dir=sprintf('mkdir AnalyzedData\%s',name);
+    system(strcat('mkdir AnalyzedData\',name));
+catch
+    save_dir=sprintf('mkdir AnalyzedData/%s',name);
+    system(save_dir);
+end
+
 if isempty(TYPE)
     save_name=sprintf('./AnalyzedData/%s/bug_%sX_%sHZ_%sVPP.mat',name,MAG,freq,volt);
 else
