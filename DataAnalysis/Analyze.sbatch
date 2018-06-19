@@ -22,7 +22,7 @@ ffmpeg -i ${FILE} ${DIR##*/}/${DIR##*/}%05d.bmp
 fullname=${DIR##*/}
 echo ${fullname}
 # VPP
-partname=${fullname##*_}
+partname=${fullname#*_*_*_}
 echo ${partname}
 volt=${partname%V*}
 echo ${volt}
