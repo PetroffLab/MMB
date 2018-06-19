@@ -24,7 +24,7 @@ echo ${fullname}
 # VPP
 partname=${fullname##*_}
 echo ${partname}
-volt=${partname%V*}
+volt='${partname%V*}'
 echo ${volt}
 # Freq
 partname=${fullname##*X_}
@@ -37,8 +37,14 @@ echo ${partname}
 mag=${partname##*_}
 echo ${mag}
 # Type
-partname=${fullname#*_}
+partname=${fullname%%_*}
 echo ${partname}
+if [${partname} = ${mag}X]
+then
+  wave=''
+else
+  wave=${partname}
+fi
 
 
 # Run the Analysis
