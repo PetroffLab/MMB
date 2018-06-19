@@ -32,9 +32,9 @@ echo ${partname}
 freq=${partname%H*}
 echo ${freq}
 # Mag
-partname=${fullname}
+partname=${fullname%X_}
 echo ${partname}
-mag=${partname%X}
+mag=${partname##*_}
 echo ${mag}
 # Type
 partname=${fullname}
