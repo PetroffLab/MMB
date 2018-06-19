@@ -25,7 +25,7 @@ for i=1:length(bug)
         dy=[0,diff(y)]/dt;
         ddy=[0,diff(dy)]/dt;
         tempk=(dx.*ddy)-(dy.*ddx);
-        k=abs(tempk/((dot(x,x)+dot(y,y))^(3/2)));
+        k=tempk/((dot(dx,dx)+dot(dy,dy))^(3/2));
         l=l+1;
         %%
         % Load Chosen tracks into a special variable to analyze later
