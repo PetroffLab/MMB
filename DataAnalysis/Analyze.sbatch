@@ -23,6 +23,7 @@ fullname=${DIR##*/}
 fullname=${fullname%.*}
 # VPP
 partname=${fullname##*_}
+echo ${partname}
 volt=${partname%V*}
 echo ${volt}
 
