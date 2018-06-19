@@ -26,6 +26,20 @@ partname=${fullname##*_}
 echo ${partname}
 volt=${partname%V*}
 echo ${volt}
+# Freq
+partname=${fullname##*_*_}
+echo ${partname}
+freq=${partname%H*}
+echo ${freq}
+# Mag
+partname=${fullname}
+echo ${partname}
+mag=${partname%X}
+echo ${mag}
+# Type
+partname=${fullname}
+echo ${partname}
+
 
 # Run the Analysis
 # matlab -nodisplay -r "load 0.54a_sm.mat; save('AnalyzedData/${DIR##*/}.mat,'${MatlabFUNCTION}('${DIR##*/}'))"
