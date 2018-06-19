@@ -37,7 +37,7 @@ echo ${partname}
 mag=${partname##*_}
 echo ${mag}
 # Type
-partname=${fullname##*_}
+partname=${fullname#*_}
 echo ${partname}
 
 
