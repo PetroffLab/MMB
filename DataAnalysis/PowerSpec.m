@@ -38,8 +38,8 @@ function traj=PowerSpec(num,framerate,bug)
             P1(2:end-1)=2*P1(2:end-1);
             traj{l}.f=framerate*(0:(L/2))/L;
             traj{l}.fft=P1;
-            plot(f,P1);
-            figure();
+            % plot(traj{l}.f,P1);
+            % figure();
         end
     end
 end

@@ -1,60 +1,21 @@
 %%
-% Load Proper Scaling Matrix
-load 40X_sm.mat
+Fs = 1000;            % Sampling frequency
+T = 1/Fs;             % Sampling period
+L = 1500;             % Length of signal
+t = (0:L-1)*T;        % Time vector
 %%
-% Track Particles
-bug = find_background('40','2.0','0.75','SQ');
-%%
-% Go through each track and analyze only bugs with more than num points
-hold on;
-l=0;
-num = 15;
-for i=1:length(bug)
-    if(length(bug{i}.pos)>num)
-        %%
-        % Load Data from the find_background function
-        x = zeros(length(bug{i}.pos));
-        y = zeros(length(bug{i}.pos));
-        x=real(bug{i}.pos);
-        y=imag(bug{i}.pos);
-        %%
-        % Find the Curvature
-        dt=mean(diff(bug{i}.time));
-        dx=[0,diff(x)]/dt;
-        ddx=[0,diff(dx)]/dt;
-        dy=[0,diff(y)]/dt;
-        ddy=[0,diff(dy)]/dt;
-        tempk=(dx.*ddy)-(dy.*ddx);
-        k=tempk/((dot(dx,dx)+dot(dy,dy))^(3/2));
-        l=l+1;
-        %%
-        % Load Chosen tracks into a special variable to analyze later
-        traj{l}.t=bug{i}.time;
-        traj{l}.x=x;
-        traj{l}.y=y;
-        traj{l}.k=k;
-        %%
-        % Fourier Transform
-        framerate=30;
-        Y=abs(fft(k)).^2;
-        T=bug{i}.time*framerate;
-        L=length(Y);
-        P2=abs(Y./T);
-        length(P2)
-        length(Y)
-        P1=P2(1:L/2+1)
-        P1(2:end-1)=2*P1(2:end-1);
-        f=framerate*(0:(L/2))/L;
-        plot(f,P1);
-        figure();
-        %%
-        % Plot the important bits
-%         plot(x,y)
-%         figure();
-%         plot(bug{i}.time,k)
-%         plot(bug{i}.time,fft(k))
-%         i
-%         axis([0 15 0 10^-8]);
-    end
+% Test Functions
+test{1}.pos = 0.7*sin(2*pi*50*t) + sin(2*pi*120*t) + 5i*t;
+test{2}.pos = sin(2*pi*120*t) + 5i*t;
+test{3}.pos = 0.7*sin(2*pi*50*t) + 5i*t;
+for i=1:length(test)
+  test{i}.time = t;
 end
-hold off;
+
+testtraj=PowerSpec(15,Fs,test)
+%%
+
+for i=1:length(testtraj)
+  plot(testtraj{i}.f,testtraj{i}.fft);
+  figure()
+end
