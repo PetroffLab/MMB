@@ -1,4 +1,23 @@
-function bug=find_background(name)
+function bug=find_background(MAG,freq,volt,TYPE)
+
+if nargin==0
+    TYPE=input('wave type (press enter for sine wave): ','s');
+    MAG=input('magnification: ','s');
+    freq=input('frequency: ','s');
+    volt=input('peak to peak voltage: ','s');
+end
+
+if nargin==3
+    TYPE='';
+end
+
+if isempty(TYPE)
+    name=sprintf('%sX_%sHZ_%sVPP',MAG,freq,volt);
+else
+    name=sprintf('%s_%sX_%sHZ_%sVPP',TYPE,MAG,freq,volt);
+end
+
+
 
 num=list_them(name);
 %v=VideoReader(name);
@@ -45,10 +64,11 @@ pos=cell(size(num));
 tic;
 for i=1:length(num)
     
-    %imagesc(read_frames(name,i)-back); 
+    %imagesc(read_frames(name,i)-back);
+    5; 
     
     A=-conv2(read_frames(name,i)-back,sm,'same');
-%     imagesc(A)
+   % imagesc(A)
     axis equal
     bw=A>20;
     data{i}=regionprops(bw);
@@ -58,7 +78,7 @@ for i=1:length(num)
         pos{i}(j)=data{i}(j).Centroid(1)+1i*data{i}(j).Centroid(2);
     end
     hold off
-%     drawnow
+    %drawnow
     TOC=toc;
     fprintf('found cell: %d of %d\n',i,length(num));
     fprintf('%f sec remaining\n',(TOC/i)*(length(num)-i));
@@ -69,22 +89,29 @@ assign = cell(length(num)-1,1);
 untrack = cell(length(num)-1,1);
 undetect = cell(length(num)-1,1);
 
+
+
+
+
 for i=2:length(pos);
     detections=[real(pos{i}'), imag(pos{i}')];
     cost = zeros(size(predictions,1),size(detections,1));
     for j = 1:size(predictions, 1)
       try
         diff = detections - repmat(predictions(j,:),[size(detections,1),1]);
-        cost(j, :) = sqrt(sum(diff .^ 2,2));
+      cost(j, :) = sqrt(sum(diff .^ 2,2));
       catch
+          5;
       end
     end
     [assignment,unassignedTracks,unassignedDetections] =assignDetectionsToTracks(cost,50);
-    predictions=detections;
-    assign{i} = assignment;
-    untrack{i} = unassignedTracks;
-    undetect{i} = unassignedDetections;
-    fprintf('stitching cells: %d\n',i);
+     predictions=detections;
+     assign{i} = assignment;
+     untrack{i} = unassignedTracks;
+     undetect{i} = unassignedDetections;
+   
+    5;
+     fprintf('stitching cells: %d\n',i);
 end
 
 w = 1;
@@ -97,31 +124,69 @@ for i =1:length(pos{w})
     bug{i}.time = 1;
     bug{i}.index = i;    
 end
+5;
 
 for t = 2:(length(num)-1)
-    %we need to track the bugs through each frame/time
-    for i =1:size(assign{t},1)
-        D = assign{t}(i,2); %detected 
-        P = assign{t}(i,1); %predicted
-        
-        for k = 1: length(bug)
-            try
-            T = bug{k}.time(end); %current time
-            I = bug{k}.index(end);%current index
-            catch
-            end
-            if I ==P && T == (t-1)
+   %we need to track the bugs through each frame/time
+   for i =1:size(assign{t},1)
+       D = assign{t}(i,2); %detected 
+       P = assign{t}(i,1); %predicted
+       
+       for k = 1: length(bug)
+           try
+           T = bug{k}.time(end); %current time
+           I = bug{k}.index(end);%current index
+           catch
+               5;
+           end
+           if I ==P && T == (t-1)
                K = k;
-            end
-        end
-        bug{K}.pos(end +1) = pos{t}(D);
-        bug{K}.time(end +1) = t;
-        bug{K}.index(end +1) = D;
+           end
+       end
+     bug{K}.pos(end +1) = pos{t}(D);
+     bug{K}.time(end +1) = t;
+     bug{K}.index(end +1) = D;
       
-    end
-    for j = 1:size(undetect{t},1)
-        bug{end+1}.pos = pos{t}(undetect{t}(j));
-        bug{end}.time = t;
-        bug{end}.index = undetect{t}(j);
-    end 
+   end
+    5;
+    
+     
+      for j = 1:size(undetect{t},1)
+    bug{end+1}.pos = pos{t}(undetect{t}(j));
+    bug{end}.time = t;
+    bug{end}.index = undetect{t}(j);
+      end
+     
 end
+
+
+kill = zeros(length(bug),1);
+
+for i = 1:length(bug)
+    try 
+   if length(bug{i}.pos) < 15
+       kill(i) = 1;
+   end
+    catch
+        5;
+    end
+end
+
+bug(kill == 1) = [];
+
+5;
+
+if isempty(TYPE)
+    save_name=sprintf('./%s/bug_%sX_%sHZ_%sVPP.mat',name,MAG,freq,volt);
+else
+    save_name=sprintf('./%s/bug_%s_%sX_%sHZ_%sVPP.mat',name,TYPE,MAG,freq,volt);
+end
+
+save(save_name,'bug','name')
+
+
+
+
+
+
+
