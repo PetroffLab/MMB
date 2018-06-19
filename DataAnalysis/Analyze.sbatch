@@ -21,6 +21,7 @@ ffmpeg -i ${FILE} ${DIR##*/}/${DIR##*/}%05d.bmp
 # Pull Info from Filename
 fullname=${DIR##*/}
 fullname=${fullname%.*}
+echo ${fullname}
 # VPP
 partname=${fullname##*_}
 echo ${partname}
