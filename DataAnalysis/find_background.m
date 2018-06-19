@@ -182,11 +182,5 @@ else
     save_name=sprintf('./%s/bug_%s_%sX_%sHZ_%sVPP.mat',name,TYPE,MAG,freq,volt);
 end
 
-save(save_name,'bug','name')
-
-
-
-
-
-
-
+system("mkdir " + "AnalyzedData/"+'name');
+save(save_name,'bug',char("AnalyzedData/"+'name'))
