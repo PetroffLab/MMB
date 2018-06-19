@@ -189,10 +189,16 @@ for i = 1:length(bug)
     
 end
 
+try
+    system(strcat('mkdir AnalyzedData/',name));
+catch
+    system(strcat('mkdir AnalyzedData\',name));
+end
+
 if isempty(TYPE)
-    save_name=sprintf('./%s/bug_%sX_%sHZ_%sVPP.mat',name,MAG,freq,volt);
+    save_name=sprintf('./AnalyzedData/%s/bug_%sX_%sHZ_%sVPP.mat',name,MAG,freq,volt);
 else
-    save_name=sprintf('./%s/bug_%s_%sX_%sHZ_%sVPP.mat',name,TYPE,MAG,freq,volt);
+    save_name=sprintf('./AnalyzedData/%s/bug_%s_%sX_%sHZ_%sVPP.mat',name,TYPE,MAG,freq,volt);
 end
 
 save(save_name,'bug','name')
