@@ -20,9 +20,9 @@ ffmpeg -i ${FILE} ${DIR##*/}/${DIR##*/}%05d.bmp
 
 # Pull Info from Filename
 fullname=${DIR##*/}
-echo ${fullname}
+fullname=${fullname%.*}
 # VPP
-partname=${fullname#*_*_*_}
+partname=${fullname##*_}
 echo ${partname}
 volt=${partname%V*}
 echo ${volt}
