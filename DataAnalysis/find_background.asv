@@ -176,6 +176,8 @@ bug(kill == 1) = [];
 
 5;
 
+system(
+
 if isempty(TYPE)
     save_name=sprintf('./AnalyzedData/%s/bug_%sX_%sHZ_%sVPP.mat',name,MAG,freq,volt);
 else
