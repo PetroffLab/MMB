@@ -179,7 +179,7 @@ bug(kill == 1) = [];
 try
     system(strcat('mkdir .\AnalyzedData\',name));
 catch
-    system(strcat('mkdir ./AnalyzedData/',name)));
+    system(strcat('mkdir ./AnalyzedData/',name));
 end
 
 if isempty(TYPE)
