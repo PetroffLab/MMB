@@ -24,17 +24,21 @@ for i=1:length(bug)
         ddx=[0,diff(dx)]/dt;
         dy=[0,diff(y)]/dt;
         ddy=[0,diff(dy)]/dt;
-        tempk=abs((dx.*ddy)-(dy.*ddx));
+        tempk=(dx.*ddy)-(dy.*ddx);
         k=tempk/((dot(x,x)+dot(y,y))^(3/2));
         l=l+1;
+        %%
+        % Load Chosen tracks into a special variable to analyze later
         traj{l}.t=bug{i}.time;
         traj{l}.x=x;
         traj{l}.y=y;
         traj{l}.k=k;
+        %%
+        % Plot the important bits
 %         plot(x,y)
         figure();
         plot(bug{i}.time,k)
-        plot(bug{i}.time,fft(k))
+%         plot(bug{i}.time,fft(k))
 %         i
 %         axis([0 2 0 5]);
     end
