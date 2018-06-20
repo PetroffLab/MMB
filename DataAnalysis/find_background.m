@@ -58,7 +58,7 @@ clear('s')
 % sm=sm/sum(sm(:));
 
 %MANUAL CHANGE
-load 40X_sm;
+load 40X_sm.mat;
 
 pos=cell(size(num));
 tic;
@@ -122,7 +122,10 @@ end
 for i =1:length(pos{w})
     bug{i}.pos = pos{w}(i);
     bug{i}.time = 1;
-    bug{i}.index = i;    
+    bug{i}.index = i;   
+     if i < length(pos{w})
+    bug{i}.vel = 0;
+    end
 end
 5;
 
@@ -175,6 +178,16 @@ end
 bug(kill == 1) = [];
 
 5;
+
+for i = 1:length(bug)
+    for j = 2:length(bug{i}.pos)
+        dx(j) = (real(bug{i}.pos(j)) -real(bug{i}.pos(j-1)))/(1/24);
+        dy(j) = (imag(bug{i}.pos(j)) -imag(bug{i}.pos(j-1)))/(1/24);
+        v(j) = sqrt(dx(j)^2+dy(j)^2);
+        bug{i}.vel(j) = v(j);
+    end
+    
+end
 
 if isempty(TYPE)
     save_name=sprintf('./%s/bug_%sX_%sHZ_%sVPP.mat',name,MAG,freq,volt);
