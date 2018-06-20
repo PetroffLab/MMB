@@ -28,7 +28,10 @@ function traj=PowerSpec(num,framerate,bug)
             traj{l}.k=k;
             %%
             % Fourier Transform
-            Y=abs(fft(k)).^2;
+            hannwin=hamming(length(k));
+            % plot(k.*transpose(hannwin))
+            % plot(k)
+            Y=abs(fft(k.*hannwin')).^2;
             T=bug{i}.time*framerate;
             L=length(Y);
             P2=abs(Y./T);
