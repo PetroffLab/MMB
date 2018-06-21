@@ -189,11 +189,16 @@ for i = 1:length(bug)
     
 end
 
+<<<<<<< HEAD
 
     [output,error]=system(strcat('mkdir AnalyzedData/',name))
 
     [output,error]=system(strcat('mkdir AnalyzedData\',name))
 
+=======
+system(strcat('mkdir AnalyzedData/',name));
+system(strcat('mkdir AnalyzedData\',name));
+>>>>>>> 7af553188ee6265aaff3f45dfa66cc879dd99ed8
 
 if isempty(TYPE)
     save_name=sprintf('./AnalyzedData/%s/bug_%sX_%sHZ_%sVPP.mat',name,MAG,freq,volt);
@@ -202,10 +207,3 @@ else
 end
 
 save(save_name,'bug','name')
-
-
-
-
-
-
-
