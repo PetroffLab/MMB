@@ -58,7 +58,7 @@ clear('s')
 % sm=sm/sum(sm(:));
 
 %MANUAL CHANGE
-load 0.54a_sm.mat;
+load 40X_sm.mat;
 
 pos=cell(size(num));
 tic;
@@ -104,7 +104,7 @@ for i=2:length(pos);
           5;
       end
     end
-    [assignment,unassignedTracks,unassignedDetections] =assignDetectionsToTracks(cost,length(sm)*0.6);
+    [assignment,unassignedTracks,unassignedDetections] =assignDetectionsToTracks(cost,50);
      predictions=detections;
      assign{i} = assignment;
      untrack{i} = unassignedTracks;
@@ -189,16 +189,8 @@ for i = 1:length(bug)
     
 end
 
-
-
-    [output,error]=system(strcat('mkdir AnalyzedData/',name))
-
-    [output,error]=system(strcat('mkdir AnalyzedData\',name))
-
-
 system(strcat('mkdir AnalyzedData/',name));
 system(strcat('mkdir AnalyzedData\',name));
-
 
 if isempty(TYPE)
     save_name=sprintf('./AnalyzedData/%s/bug_%sX_%sHZ_%sVPP.mat',name,MAG,freq,volt);
