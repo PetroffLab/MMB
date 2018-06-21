@@ -104,7 +104,7 @@ for i=2:length(pos);
           5;
       end
     end
-    [assignment,unassignedTracks,unassignedDetections] =assignDetectionsToTracks(cost,50);
+    [assignment,unassignedTracks,unassignedDetections] =assignDetectionsToTracks(cost,length(sm)*0.6);
      predictions=detections;
      assign{i} = assignment;
      untrack{i} = unassignedTracks;
@@ -189,11 +189,11 @@ for i = 1:length(bug)
     
 end
 
-try
-    system(strcat('mkdir AnalyzedData/',name));
-catch
-    system(strcat('mkdir AnalyzedData\',name));
-end
+
+    [output,error]=system(strcat('mkdir AnalyzedData/',name))
+
+    [output,error]=system(strcat('mkdir AnalyzedData\',name))
+
 
 if isempty(TYPE)
     save_name=sprintf('./AnalyzedData/%s/bug_%sX_%sHZ_%sVPP.mat',name,MAG,freq,volt);
