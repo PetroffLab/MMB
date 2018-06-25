@@ -23,7 +23,7 @@ func_gen.write("OUTP OFF")
 freq = "2.0"
 amp = "1.0"
 offset = "0.5"
-func_gen.write("APPL: SIN " + freq + ", " + amp + ", " + offset)
+func_gen.write("APPL:SIN " + freq + ", " + amp + ", " + offset)
 
 
 ###############################################################################
@@ -33,4 +33,4 @@ func_gen.write("OUTP ON")
 
 ###############################################################################
 # Close function Generator
-func_gen.close()
+# func_gen.close()
