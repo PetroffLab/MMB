@@ -2,6 +2,8 @@
 ################# Find the Delay from GPhoto to Camera ########################
 ################################ 8/3/18 #######################################
 
+## Run as either Root or sudo, possibly sudo -H to avoid 'Device has no Languid'
+
 import visa
 import time
 import subprocess as sp
@@ -23,6 +25,7 @@ func_gen.write("OUTP OFF")
 
 ###############################################################################
 # Controls for Agilent 33210A
+## Command list inside http://nnp.ucsd.edu/Lab_Equip_Manuals/hp_33210a_User_guide.pdf
 
 freq = "1.0"
 amp = "2.37"
